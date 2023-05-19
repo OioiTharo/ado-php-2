@@ -1,5 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<?php
+	require 'conexao.php';
+	
+	$musicas = [];
+	$id = filter_input(INPUT_GET, "id");
+	if($id){
+		$sql = $pdo->prepare("SELECT * FROM lista WHERE id =:id");
+		$sql->bindValue(':id',$id);
+		$sql->execute()
+		if($sql->rowCount()>0){
+			$musicas = $sql->fetch(PDO::FETCH_ASSOC);
+		}
+		else{
+			header("Location: index.php");
+			exit;
+		}
+	}
+	else{
+			header("Location: index.php");
+	}
+?>
+<html lang="pt-br">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,31 +38,33 @@
 		</div>
 		<div class="dFor2">
 			<form method="POST" action="edAcao.php" class="row">
-				<h2>Cadastrar musica</h2>
+				<h2>Editar musica</h2>
+				<input type="hidden" name="id" value="<?=$lista['id'];?>"/>
+				<p class="pad"></p>
 				<div class="col-3">
 					<label for="Musica" class="form-label">Musica:</label>
-					<input type="text" class="form-control" id="Musica">
+					<input type="text" class="form-control" id="Musica" value="<?=$lista['musica'];?>">
 				</div>
 				<div class="col-3">
 					<label for="Cantor" class="form-label">Cantor:</label>
-					<input type="text" class="form-control" id="Cantor">
+					<input type="text" class="form-control" id="Cantor" value="<?=$lista['cantor'];?>">
 				</div>
 				<div class="col-3">
 					<label for="Album" class="form-label">Album:</label>
-					<input type="text" class="form-control" id="Album">
+					<input type="text" class="form-control" id="Album" value="<?=$lista['album'];?>">
 				</div>
 				<div class="col-2">
 					<label for="Ano" class="form-label">Ano de lançamento:</label>
-					<input type="text" class="form-control" id="Ano">
+					<input type="text" class="form-control" id="Ano" value="<?=$lista['anoLanc'];?>">
 				</div>
 				<p class="pad"></p>
 				<div class="col-6">
 					<label for="Compositor" class="form-label">Compositor:</label>
-					<input type="text" class="form-control" id="Compositor" placeholder="nome/nome">
+					<input type="text" class="form-control" id="Compositor" value="<?=$lista['compositor'];?>">
 				</div>
 				<div class="col-2">
 					<label for="Genero" class="form-label">Genero:</label>
-					<input type="text" class="form-control" id="Genero">
+					<input type="text" class="form-control" id="Genero" value="<?=$lista['genero'];?>">
 				</div>
 				<p class="pad"></p>
 				<input class="btn btn-primary sal" type="submit" value="SALVAR"/>

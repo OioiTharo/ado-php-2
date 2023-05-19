@@ -1,5 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<?php
+	require 'conexao.php';
+	
+	$listaa=[];
+	$sql = $pdo->query("SELECT * FROM lista")
+	if($sql->rowCount()>0){
+		$listaa = $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+?>
+<html lang="pt-br">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,6 +56,21 @@
 				<td>Avril Lavigne </td>
 				<td><input type="button" class="btn" value="Deletar"> <a href="editar.html"> <input type="button" class=" btn" value="Editar"></a></td>
 			</tr>
+			<?php foreach($listaa as $lista): ?>
+			<tr>
+				<td><?$lista['id'];?></td>
+				<td><?$lista['musica'];?></td>
+				<td><?$lista['cantor'];?></td>
+				<td><?$lista['compositor'];?></td>
+				<td><?$lista['anoLanc'];?></td>
+				<td><?$lista['genero'];?></td>
+				<td><?$lista['album'];?></td>
+				<td>
+					<a href="excluir.php?id=<?$lista['id'];?>"><input type="button" class="btn" value="Deletar"></a> 
+					<a href="editar.php?id=<?$lista['id'];?>"> <input type="button" class=" btn" value="Editar"></a>
+				</td>
+			</tr>
+			<?php endforeach ; ?>
 		</table></div>
 		<div class="dBot fixed-bottom">
 			<a href="cadastro.html"><input type="button" class="btn btn-primary prin" value="Cadastrar Musica"></a>
