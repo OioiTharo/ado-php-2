@@ -1,21 +1,30 @@
 <?php
 	require 'conexao.php';
+	$pdo = conectar();
 	
-	$id = filter_input(INPUT_POST, 'id');
+	$Id = filter_input(INPUT_POST, 'Id');	
 	$musica = filter_input(INPUT_POST, 'musica');
 	$cantor = filter_input(INPUT_POST, 'cantor');
+	$compositor = filter_input(INPUT_POST, 'compositor');
+	$anoLanc = filter_input(INPUT_POST, 'anoLanc');
+	$album = filter_input(INPUT_POST, 'album');
+	$genero = filter_input(INPUT_POST, 'genero');
 	
-	if($id && $musica && $cantor){
-		$sql = $pdo->prepare("UPDATE lista SET musica = :musica, cantor = :cantor WHERE id = :id")
+	if($Id && $musica && $cantor && $compositor && $anoLanc && $album && $genero){
+		$sql = $pdo->prepare("UPDATE lista SET musica = :musica, cantor = :cantor, compositor = :compositor, anoLanc = :anoLanc, album = :album, genero = :genero WHERE Id = :Id");
 		$sql->bindValue(':musica', $musica);
 		$sql->bindValue(':cantor', $cantor);
-		$sql->bindValue(':id', $id);
+		$sql->bindValue(':compositor', $compositor);
+		$sql->bindValue(':anoLanc', $anoLanc);
+		$sql->bindValue(':album', $album);
+		$sql->bindValue(':genero', $genero);
+		$sql->bindValue(':Id', $Id);
 		$sql->execute();
 		header("Location: index.php");
 		exit;
 	}
 	else{
-		header("Location: index.php");
+		header("Location: index.php"); 
 		exit;
 	}
 ?>

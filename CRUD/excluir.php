@@ -1,12 +1,14 @@
 <?php
 	require 'conexao.php';
+	$pdo = conectar();
 	
-	$id = filter_input(INPUT_GET, 'id');
+	$Id = filter_input(INPUT_GET, 'Id');
 	
-	if($id){
-		$sql = $pdo->prepare("DELETE FROM list WHERE id = :id");
-		$sql->bindValue(":id", $id);
+	if($Id){
+		$sql = $pdo->prepare("DELETE FROM lista WHERE Id = :Id");
+		$sql->bindValue(":Id", $Id);
 		$sql->execute();
 	}
 	header("Location: index.php");
+	
 ?>
