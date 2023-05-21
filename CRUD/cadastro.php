@@ -47,6 +47,7 @@
 				<input class="btn btn-primary cad" type="submit" value="CADASTRAR"/>
 			</form>
 		</div>
+		<a href="index.php"><img src="setaazul.png" class="voltar"></a>
 		<div class="dBot fixed-bottom">
 			<p>by: ©GTG</p>
 		</div>

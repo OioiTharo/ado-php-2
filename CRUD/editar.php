@@ -72,6 +72,7 @@
 				<input class="btn btn-primary sal" type="submit" value="SALVAR"/>
 			</form>
 		</div>
+		<a href="index.php"><img src="setaroxa.png" class="voltar"></a>
 		<div class="dBot fixed-bottom">
 			<p>by: ©GTG</p>
 		</div>
