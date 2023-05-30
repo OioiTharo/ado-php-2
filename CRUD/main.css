@@ -6,10 +6,10 @@ body{
 	text-align: center;
 	margin: auto;
 	display: block;
-	padding-bottom: 15px;
+	padding-bottom: 10px;
 }
 .gif{
-	width: 8%;
+	width: 6%;
 }
 .dTa{
 	border: 3px solid #7fe5eb; 
@@ -100,4 +100,31 @@ form{
 .voltar{
 	height: 40px;
 	padding-left: 15px;
+	margin-bottom: 20px;
+}
+
+.estM{
+	width: 180px;
+	max-height: 100px;
+	margin: auto;
+	display: block;
+}
+.ests{
+	border: 2px solid #7fe5eb; 
+	height: 200px;
+	width: 200px;
+	overflow: auto;
+	margin: 0px 35% 40px;
+	display:block;
+}
+.verM{
+	margin: auto;
+	display: block;
+}
+.versM{
+	border: 2px solid #7fe5eb; 
+	height: 100%;
+	width: 80px;
+	margin: -220px 55% 30px;
+	display:block;
 }

@@ -2,7 +2,7 @@
 	require 'conexao.php';
 	$pdo = conectar();
 	$listaa=[];
-	$sql = "SELECT * FROM lista";
+	$sql = "SELECT * FROM MUSICA";
 	$resultado = $pdo->query($sql);
 	while ($linha = $resultado->fetch(PDO::FETCH_ASSOC)) {
 		$listaa[] = $linha;
@@ -28,27 +28,29 @@
 		<div class="dTa"><table class="table table-striped tMus">
 			<tr>
 				<th>ID</th>
-				<th>Musica</th>
+				<th>Titulo</th>
 				<th>Cantor</th>
-				<th>Compositor</th>
+				<th>Compositores</th>
 				<th>Ano de lançamento</th>
-				<th>Genero</th>
-				<th>Album</th>
+				<th>Versao</th>
+				<th>Estilo</th>
+				<th>Restrição</th>
 				<th></th>
 			</tr>
 			<tr>
 			<?php foreach($listaa as $lista): ?>
 			<tr>
-				<td><?=$lista['Id'];?></td>
-				<td><?=$lista['musica'];?></td>
+				<td><?=$lista['id'];?></td>
+				<td><?=$lista['titulo'];?></td>
 				<td><?=$lista['cantor'];?></td>
-				<td><?=$lista['compositor'];?></td>
-				<td><?=$lista['anoLanc'];?></td>
-				<td><?=$lista['genero'];?></td>
-				<td><?=$lista['album'];?></td>
+				<td><?=$lista['compositores'];?></td>
+				<td><?=$lista['ano_Lanc'];?></td>
+				<td><?=$lista['versao'];?></td>
+				<td><?=$lista['estilo'];?></td>
+				<td><?=$lista['restricao'];?></td>
 				<td>
-					<a href="excluir.php?Id=<?=$lista['Id'];?>"><input type="button" class="btn" value="Deletar"></a> 
-					<a href="editar.php?Id=<?=$lista['Id'];?>"> <input type="button" class=" btn" value="Editar"></a>
+					<a href="excluir.php?id=<?=$lista['id'];?>"><input type="button" class="btn" value="Deletar"></a> 
+					<a href="editar.php?id=<?=$lista['id'];?>"><input type="button" class=" btn" value="Editar"></a>
 				</td>
 			</tr>
 			<?php endforeach ; ?>

@@ -2,23 +2,25 @@
 	require 'conexao.php';
 	$pdo = conectar();
 	
-	$Id = filter_input(INPUT_POST, 'Id');	
-	$musica = filter_input(INPUT_POST, 'musica');
+	$id = filter_input(INPUT_POST, 'id');	
+	$titulo = filter_input(INPUT_POST, 'titulo');
 	$cantor = filter_input(INPUT_POST, 'cantor');
-	$compositor = filter_input(INPUT_POST, 'compositor');
-	$anoLanc = filter_input(INPUT_POST, 'anoLanc');
-	$album = filter_input(INPUT_POST, 'album');
-	$genero = filter_input(INPUT_POST, 'genero');
-	
-	if($Id && $musica && $cantor && $compositor && $anoLanc && $album && $genero){
-		$sql = $pdo->prepare("UPDATE lista SET musica = :musica, cantor = :cantor, compositor = :compositor, anoLanc = :anoLanc, album = :album, genero = :genero WHERE Id = :Id");
-		$sql->bindValue(':musica', $musica);
+	$compositores = filter_input(INPUT_POST, 'compositores');
+	$ano_Lanc = filter_input(INPUT_POST, 'ano_Lanc');
+	$estilo = filter_input(INPUT_POST, 'estilo');
+	$versao = filter_input(INPUT_POST, 'versao');
+	$restricao = filter_input(INPUT_POST, 'restricao');
+
+	if($id && $titulo && $cantor && $compositores && $ano_Lanc && $estilo && $versao && $restricao){
+		$sql = $pdo->prepare("UPDATE musica SET titulo = :titulo, cantor = :cantor, compositores = :compositores, ano_Lanc = :ano_Lanc, estilo = :estilo, versao = :versao, restricao = :restricao WHERE id = :id");
+		$sql->bindValue(':titulo', $titulo);
 		$sql->bindValue(':cantor', $cantor);
-		$sql->bindValue(':compositor', $compositor);
-		$sql->bindValue(':anoLanc', $anoLanc);
-		$sql->bindValue(':album', $album);
-		$sql->bindValue(':genero', $genero);
-		$sql->bindValue(':Id', $Id);
+		$sql->bindValue(':compositores', $compositores);
+		$sql->bindValue(':ano_Lanc', $ano_Lanc);
+		$sql->bindValue(':estilo', $estilo);
+		$sql->bindValue(':versao', $versao);
+		$sql->bindValue(':restricao', $restricao);
+		$sql->bindValue(':id', $id);
 		$sql->execute();
 		header("Location: index.php");
 		exit;

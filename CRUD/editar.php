@@ -4,10 +4,10 @@
 	$pdo = conectar();
 	
 	$musicas = [];
-	$Id = filter_input(INPUT_GET, "Id");
-	if($Id){
-		$sql = $pdo->prepare("SELECT * FROM lista WHERE Id =:Id");
-		$sql->bindValue(':Id',$Id);
+	$id = filter_input(INPUT_GET, "id");
+	if($id){
+		$sql = $pdo->prepare("SELECT * FROM musica WHERE id =:id");
+		$sql->bindValue(':id',$id);
 		$sql->execute();
 		$musicas = $sql->fetch(PDO::FETCH_ASSOC);
 		if(!$musicas){
@@ -41,32 +41,36 @@
 		<div class="dFor2">
 			<form method="POST" action="edAcao.php" class="row">
 				<h2>Editar musica</h2>
-				<input type="hidden" value="<?=$musicas['Id'];?>" name="Id"/>
+				<input type="hidden" value="<?=$musicas['id'];?>" name="id"/>
 				<p class="pad"></p>
 				<div class="col-3">
-					<label for="Musica" class="form-label">Musica:</label>
-					<input type="text" class="form-control" id="Musica" value="<?=$musicas['musica'];?>" name="musica">
+					<label for="Titulo" class="form-label">Titulo:</label>
+					<input type="text" class="form-control" id="Titulo" value="<?=$musicas['titulo'];?>" name="titulo">
 				</div>
 				<div class="col-3">
 					<label for="Cantor" class="form-label">Cantor:</label>
 					<input type="text" class="form-control" id="Cantor" value="<?=$musicas['cantor'];?>" name="cantor">
 				</div>
 				<div class="col-3">
-					<label for="Album" class="form-label">Album:</label>
-					<input type="text" class="form-control" id="Album" value="<?=$musicas['album'];?>" name="album">
+					<label for="Versao" class="form-label">Versão:</label>
+					<input type="text" class="form-control" id="Versao" value="<?=$musicas['versao'];?>" name="versao">
 				</div>
 				<div class="col-2">
 					<label for="Ano" class="form-label">Ano de lançamento:</label>
-					<input type="text" class="form-control" id="Ano" value="<?=$musicas['anoLanc'];?>" name="anoLanc">
+					<input type="text" class="form-control" id="Ano" value="<?=$musicas['ano_Lanc'];?>" name="ano_Lanc">
 				</div>
 				<p class="pad"></p>
 				<div class="col-6">
-					<label for="Compositor" class="form-label">Compositor:</label>
-					<input type="text" class="form-control" id="Compositor" value="<?=$musicas['compositor'];?>" name="compositor">
+					<label for="Compositores" class="form-label">Compositores:</label>
+					<input type="text" class="form-control" id="Compositores" value="<?=$musicas['compositores'];?>" name="compositores">
 				</div>
 				<div class="col-2">
-					<label for="Genero" class="form-label">Genero:</label>
-					<input type="text" class="form-control" id="Genero" value="<?=$musicas['genero'];?>" name="genero">
+					<label for="Estilo" class="form-label">Estilo:</label>
+					<input type="text" class="form-control" id="Estilo" value="<?=$musicas['estilo'];?>" name="estilo">
+				</div>
+				<div class="col-1">
+					<label for="Restricao" class="form-label">Restrição:</label>
+					<input type="text" class="form-control" id="Restricao" value="<?=$musicas['restricao'];?>" name="restricao">
 				</div>
 				<p class="pad"></p>
 				<input class="btn btn-primary sal" type="submit" value="SALVAR"/>

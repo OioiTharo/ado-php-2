@@ -2,11 +2,11 @@
 	require 'conexao.php';
 	$pdo = conectar();
 	
-	$Id = filter_input(INPUT_GET, 'Id');
+	$id = filter_input(INPUT_GET, 'id');
 	
-	if($Id){
-		$sql = $pdo->prepare("DELETE FROM lista WHERE Id = :Id");
-		$sql->bindValue(":Id", $Id);
+	if($id){
+		$sql = $pdo->prepare("DELETE FROM musica WHERE id = :id");
+		$sql->bindValue(":id", $id);
 		$sql->execute();
 	}
 	header("Location: index.php");
